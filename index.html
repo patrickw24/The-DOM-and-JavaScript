@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    
+    <h1 id="">Employees</h1>
+
+    <form>
+        <select id="employeeType" onchange="hideForm()">
+            <option value="">Select an Option</option>
+            <option value="fullTime">Full-Time Employee</option>
+            <option value="partTime">Part-Time Employee</option>
+        </select>
+
+        <label>Name</label>
+        <input id="inputName" type="text" >
+
+        <label>Age</label>
+        <input id="inputAge" type="text" >
+
+        <label>Salary</label>
+        <input id="inputSalary" type="number" >
+    </form>
+
+    <form id="fullTimeForm">
+        <label id="labelYearlySalary">Yearly Salary</label>
+        <input id="inputYearlySalary" type="number">
+
+        <label id="labelVacationDays">Vacation Days</label>
+        <input id="inputVacationDays" type="number">
+
+    </form>
+
+
+    <form id="partTimeForm">
+        <label id="labelHourlyWage">Hourly Wage</label>
+        <input id="inputHourlyWage" type="number">
+
+
+
+
+
+
+    </form>
+
+
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
