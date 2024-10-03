@@ -1,5 +1,7 @@
 import { Employee, fullTimeEmployee, partTimeEmployee } from "./employee.js";
 
+let globalObject
+
 function hideForm(){
 
 let selector= document.querySelector("select")
@@ -15,7 +17,7 @@ let labelVacationDays= document.getElementById("labelVacationDays")
 if(selector.value === "fullTime" ){
     hourlyWage.style.display= "none"
     labelHourlyWage.style.display= "none"
-
+    globalObject= new fullTimeEmployee(name,age,salary,yearlySalary)
 
 
 }
@@ -27,7 +29,7 @@ if(selector.value === "partTime" ){
     labelYearlySalary.style.display="none"
 
 
-    
+
 }
 
 
