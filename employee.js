@@ -5,6 +5,9 @@ export class Employee{
             this.age= age
             this.salary= salary
         }
+        getDetails(){
+            return `Your name is ${this.name}, your age is ${this.age} and your salary is ${this.salary}`
+        }
 }
 
 
@@ -20,10 +23,13 @@ export class fullTimeEmployee extends Employee{
         calculateMonthlyPay(){
 
              this.monthlyPayment = (this.yearlySalary / 12)
+             return this.monthlyPayment
         }
 
+
         accumulateVacationDays(vacationDays){
-            this.vacationDays= this.vacationDays + vacationDays
+            this.vacationDays= this.vacationDays + vacationDays;
+            return this.vacationDays
         }
 }
 
@@ -35,6 +41,7 @@ export class partTimeEmployee extends Employee{
             this.payment= 0
         }
         workHours(hours){
-            this.payment= (this.hourlyWage * hours)
+            this.payment= (this.hourlyWage * hours);
+            return this.payment
         }
 }

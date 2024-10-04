@@ -8,9 +8,10 @@
 </head>
 <body>
     
-    <h1 id="">Employees</h1>
+    <h1 id="titleID">Enter an Employee</h1>
 
-    <form>
+    <form onsubmit="createEmployee()">
+
         <select id="employeeType" onchange="hideForm()">
             <option value="">Select an Option</option>
             <option value="fullTime">Full-Time Employee</option>
@@ -26,9 +27,10 @@
         <label>Salary</label>
         <input id="inputSalary" type="number" >
         <button>Add</button>
+        
     </form>
 
-    <form id="fullTimeForm">
+    <form onsubmit="addFulltimeInfo()" id="fullTimeForm">
         <label id="labelYearlySalary">Yearly Salary</label>
         <input id="inputYearlySalary" type="number">
 
@@ -39,17 +41,13 @@
     </form>
 
 
-    <form id="partTimeForm">
+    <form onsubmit="addParttimeInfo()" id="partTimeForm">
         <label id="labelHourlyWage">Hourly Wage</label>
         <input id="inputHourlyWage" type="number">
-
-
-
-
-
-
+        <button>Calculate Pay</button>
     </form>
 
+    <p id="outputData"></p>
 
 
     <script type="module" src="main.js"></script>
