@@ -2,107 +2,103 @@ import { Employee, fullTimeEmployee, partTimeEmployee } from "./employee.js";
 
 let globalObject
 
-function hideForm(){
+function hideForm() {
 
-let selector= document.querySelector("select")
-let yearlySalary= document.getElementById("inputYearlySalary")
-let vacationDays= document.getElementById("inputVacationDays")
-let hourlyWage= document.getElementById("inputHourlyWage")
+    
+    let selector = document.querySelector("select")
+    let p = document.querySelector("p")
 
-let labelHourlyWage= document.getElementById("labelHourlyWage")
-let labelYearlySalary= document.getElementById("labelYearlySalary")
-let labelVacationDays= document.getElementById("labelVacationDays")
+    console.log(selector.value)
+    if (selector.value === "fullTime") {
+        yearlySalaryDiv.style.display = "block"
+        hourlyWageDiv.style.display = "none"
+        console.log("Show Year Salary")
+        partTimeForm.style.display = "none"
+        p.textContent = ""
+        titleID.textContent = "Enter a Full-Time Employee"
+    }
 
-if(selector.value === "fullTime" ){
-    hourlyWage.style.display = "none";
-    labelHourlyWage.style.display = "none";
-    yearlySalary.style.display = "block";
-    vacationDays.style.display = "block";
-    labelYearlySalary.style.display = "block";
-    labelVacationDays.style.display = "block";
-    titleID.textContent = "Enter Full-Time Employee"
+    if (selector.value === "partTime") {
+        hourlyWageDiv.style.display = "block"
+        yearlySalaryDiv.style.display = "none"
+        console.log("Show Hour Wage")
+        fullTimeForm.style.display = "none"
+        p.textContent = ""
+        titleID.textContent = "Enter a Part-Time Employee"
+    }
+
+    if (selector.value === ""){
+        yearlySalaryDiv.style.display = "none"
+        hourlyWageDiv.style.display = "none"
+        fullTimeForm.style.display = "none"
+        partTimeForm.style.display = "none"
+        p.textContent = ""
+        titleID.textContent = "Enter an Employee"
+    }
+
 }
 
-if(selector.value === "partTime" ){
-    yearlySalary.style.display = "none";
-    vacationDays.style.display = "none";
-    labelVacationDays.style.display = "none";
-    labelYearlySalary.style.display = "none";
-    hourlyWage.style.display = "block";
-    labelHourlyWage.style.display = "block";
-    titleID.textContent = "Enter Part-Time Employee"
-}
 
-if(selector.value === ""){
-    titleID.textContent = "Enter an Employee"
-}
-
-}
-
-
-function createEmployee(){
+function createEmployee() {
 
     event.preventDefault()
 
-    let name= inputName.value
-    let age = parseFloat(age.value)
-    let salary= parseFloat(inputSalary.value)
+    let name = inputName.value
+    let age = parseFloat(inputAge.value)
     let type = employeeType.value
     let p = document.querySelector("p")
 
-    if(type === "fullTime"){
-        globalObject= new fullTimeEmployee(name,age,salary,yearlySalary)
-        p.textContent= globalObject.getDetails()
-        fullTimeForm.style.display= 'block'
+    let yearlySalary = parseFloat(inputYearlySalary.value)
+    let hourlyWage = parseFloat(inputHourlyWage.value)
+
+
+    if (type === "fullTime") {
+        globalObject = new fullTimeEmployee(name, age, yearlySalary)
+        p.textContent = globalObject.getDetails()
+        fullTimeForm.style.display = 'block'
     }
 
-    if(type === "partTime"){
-        globalObject= new partTimeEmployee(name, age, salary, hourlyWage)
-        p.textContent= globalObject.getDetails()
-        partTimeForm.style.display= 'block'
+    if (type === "partTime") {
+        globalObject = new partTimeEmployee(name, age, hourlyWage)
+        p.textContent = globalObject.getDetails()
+        partTimeForm.style.display = 'block'
     }
 
+    
 
 }
 
-function addFulltimeInfo(){
+function addFulltimeInfo() {
 
     event.preventDefault()
 
-    let monthlyPayment= parseFloat(inputYearlySalary.value)
-    globalObject.calculateMonthlyPay(monthlyPayment)
+    let p = document.querySelector("p")
+    let vacationDays = parseFloat(inputVacationDays.value)
+    let getVacationsInfo=globalObject.accumulateVacationDays(vacationDays)
 
-    let p= document.querySelector("p")
-     
-
-
-
-    let vacationDays= parseFloat(inputVacationDays.value)
-    globalObject.accumulateVacationDays(vacationDays)
-
-    p.textContent= `Your estimated monthly pay is ${globalObject.calculateMonthlyPay()} and you have ${globalObject.accumulateVacationDays()} vacation days.`
+    p.textContent = `Your estimated monthly pay is ${globalObject.calculateMonthlyPay()} and you have ${getVacationsInfo} vacation days.`
 
 }
 
-function addParttimeInfo(){
+function addParttimeInfo() {
 
     event.preventDefault()
 
-    let hours= parseFloat(inputHourlyWage.value)
-    globalObject.workHours(hours)
+    let hours = parseFloat(inputWorkedHours.value)
+    let pay = globalObject.workHours(hours)
 
-    let p= document.querySelector("p")
-    p.textContent= `Your earned pay is ${globalObject.workHours(hours)}`
+    let p = document.querySelector("p")
+    p.textContent = `Your earned pay is ${pay}`
 
 
 
 }
 
 
-window.addParttimeInfo= addParttimeInfo
+window.addParttimeInfo = addParttimeInfo
 
-window.createEmployee= createEmployee
+window.createEmployee = createEmployee
 
-window.addFulltimeInfo= addFulltimeInfo
+window.addFulltimeInfo = addFulltimeInfo
 
-window.hideForm= hideForm
+window.hideForm = hideForm
